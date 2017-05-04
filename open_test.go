@@ -7,6 +7,7 @@ package porteiro
 import (
 	"errors"
 	"io"
+	"net/url"
 	"reflect"
 	"testing"
 )
@@ -57,6 +58,17 @@ func TestOpenUnkownScheme(t *testing.T) {
 	}
 }
 
+func TestOpenInvalidResource(t *testing.T) {
+	var opener Opener
+	rc, err := opener.Open("://something-funny")
+	if err == nil {
+		t.Fatal("unexpected <nil> error")
+	}
+	if rc != nil {
+		t.Errorf("unexpected non-nil ReadCloser: %#v", rc)
+	}
+}
+
 func TestFailureOnOpen(t *testing.T) {
 	prepErr := errors.New("something went wrong")
 	fn := makeFakeFn("1", prepErr, &callRecorder{})
@@ -81,8 +93,8 @@ type callRecorder struct {
 }
 
 func makeFakeFn(id string, err error, callRecorder *callRecorder) OpenFunc {
-	return func(uri string) (io.ReadCloser, error) {
-		callRecorder.calls = append(callRecorder.calls, fakeFnCall{id: id, uri: uri})
+	return func(url *url.URL) (io.ReadCloser, error) {
+		callRecorder.calls = append(callRecorder.calls, fakeFnCall{id: id, uri: url.String()})
 		return nil, err
 	}
 }

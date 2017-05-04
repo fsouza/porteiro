@@ -15,7 +15,7 @@ import (
 )
 
 // OpenFunc is a function capable of opening a given resource.
-type OpenFunc func(uri string) (io.ReadCloser, error)
+type OpenFunc func(uri *url.URL) (io.ReadCloser, error)
 
 // Opener is the base type that can learn how to open things.
 //
@@ -50,5 +50,5 @@ func (o *Opener) Open(uri string) (io.ReadCloser, error) {
 	if !ok {
 		return nil, fmt.Errorf("can't open %q: unknown scheme %q", uri, resource.Scheme)
 	}
-	return fn(uri)
+	return fn(resource)
 }
