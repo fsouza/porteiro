@@ -1,0 +1,13 @@
+language: go
+sudo: false
+install:
+  - go get github.com/alecthomas/gometalinter
+  - gometalinter --install
+  - go get -d -t ./...
+  - go install ./...
+script:
+  - gometalinter --disable errcheck --deadline 10m ./...
+  - go test ./...
+go:
+  - 1.8.x
+  - tip
