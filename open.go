@@ -41,6 +41,22 @@ func (o *Opener) Register(scheme string, fn OpenFunc) *Opener {
 	return &Opener{registry: registry}
 }
 
+// Merge returns a new opener that combines the functions from both Openers.
+//
+// In case of scheme conflict, functions from other are chosen.
+func (o *Opener) Merge(other *Opener) *Opener {
+	registry := make(map[string]OpenFunc)
+	if o != nil {
+		for k, v := range o.registry {
+			registry[k] = v
+		}
+	}
+	for k, v := range other.registry {
+		registry[k] = v
+	}
+	return &Opener{registry: registry}
+}
+
 // Open opens the given uri using one of the underlying OpenFunc.
 func (o *Opener) Open(uri string) (io.ReadCloser, error) {
 	resource, err := url.Parse(uri)

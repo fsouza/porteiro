@@ -43,6 +43,38 @@ func TestRegisterAndOpen(t *testing.T) {
 	}
 }
 
+func TestMerge(t *testing.T) {
+	var recorder callRecorder
+	fn1 := makeFakeFn("1", nil, &recorder)
+	fn2 := makeFakeFn("2", nil, &recorder)
+	fn3 := makeFakeFn("3", nil, &recorder)
+	fn4 := makeFakeFn("4", nil, &recorder)
+	var o1, o2 *Opener
+	o1 = o1.Register("http", fn1).Register("ftp", fn2)
+	o2 = o2.Register("s3", fn3).Register("ftp", fn4)
+	o3 := o1.Merge(o2)
+	_, err := o3.Open("http://something-nice")
+	if err != nil {
+		t.Error(err)
+	}
+	_, err = o3.Open("ftp://hello-its-me")
+	if err != nil {
+		t.Error(err)
+	}
+	_, err = o3.Open("s3://some-bucket/object.txt")
+	if err != nil {
+		t.Error(err)
+	}
+	expectedCalls := []fakeFnCall{
+		{id: "1", uri: "http://something-nice"},
+		{id: "4", uri: "ftp://hello-its-me"},
+		{id: "3", uri: "s3://some-bucket/object.txt"},
+	}
+	if !reflect.DeepEqual(recorder.calls, expectedCalls) {
+		t.Errorf("wrong calls made\nwant %#v\ngot  %#v", expectedCalls, recorder.calls)
+	}
+}
+
 func TestOpenUnkownScheme(t *testing.T) {
 	var opener Opener
 	rc, err := opener.Open("http://something-funny")
