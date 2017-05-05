@@ -19,7 +19,8 @@ type OpenFunc func(uri *url.URL) (io.ReadCloser, error)
 
 // Opener is the base type that can learn how to open things.
 //
-// It associates the resource's URI scheme with an OpenFunc.
+// It associates the resource's URI scheme with an OpenFunc. Openers are
+// immutable.
 type Opener struct {
 	registry map[string]OpenFunc
 }
