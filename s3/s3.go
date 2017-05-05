@@ -47,7 +47,7 @@ func (o *s3Opener) open(url *url.URL) (io.ReadCloser, error) {
 //
 // The s3 client might be set to nil, in which case a new client using the
 // default credential provider chain (see
-// https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html
+// https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
 // for more details).
 func OpenS3(client s3iface.S3API, o *porteiro.Opener) (*porteiro.Opener, error) {
 	opener, err := newS3Opener(client)
