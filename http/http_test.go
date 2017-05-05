@@ -18,7 +18,7 @@ func TestOpenHTTP(t *testing.T) {
 	content := "hello, it's me"
 	server, reqs := startServer([]byte(content), false)
 	defer server.Close()
-	opener := OpenHTTP(http.DefaultClient, nil)
+	opener := Open(http.DefaultClient, nil)
 	rc, err := opener.Open(server.URL + "/some-file.txt")
 	if err != nil {
 		t.Fatal(err)
@@ -43,7 +43,7 @@ func TestOpenHTTPNilClient(t *testing.T) {
 	content := "hello, it's me"
 	server, reqs := startServer([]byte(content), false)
 	defer server.Close()
-	opener := OpenHTTP(nil, nil)
+	opener := Open(nil, nil)
 	rc, err := opener.Open(server.URL + "/some-file.txt")
 	if err != nil {
 		t.Fatal(err)
@@ -70,7 +70,7 @@ func TestOpenHTTPSecure(t *testing.T) {
 	defer server.Close()
 	transport := cleanhttp.DefaultTransport()
 	transport.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
-	opener := OpenHTTP(&http.Client{Transport: transport}, nil)
+	opener := Open(&http.Client{Transport: transport}, nil)
 	rc, err := opener.Open(server.URL + "/some-secure-file.txt")
 	if err != nil {
 		t.Fatal(err)
@@ -92,7 +92,7 @@ func TestOpenHTTPSecure(t *testing.T) {
 }
 
 func TestOpenHTTPFailure(t *testing.T) {
-	opener := OpenHTTP(nil, nil)
+	opener := Open(nil, nil)
 	rc, err := opener.Open("http://192.0.2.14:139193/some-file.txt")
 	if err == nil {
 		t.Error("unexpected <nil> error")

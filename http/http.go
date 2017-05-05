@@ -34,12 +34,12 @@ func (o *httpOpener) open(url *url.URL) (io.ReadCloser, error) {
 	return resp.Body, nil
 }
 
-// OpenHTTP returns an opener that is able of loading files from S3 via the "s3"
+// Open returns an opener that is able of loading files from S3 via the "s3"
 // scheme.
 //
 // The http client might be set to nil, in which case a new client will be
 // created.
-func OpenHTTP(client *http.Client, o *porteiro.Opener) *porteiro.Opener {
+func Open(client *http.Client, o *porteiro.Opener) *porteiro.Opener {
 	opener := newHTTPOpener(client)
 	return o.Register("http", opener.open).Register("https", opener.open)
 }
