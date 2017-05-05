@@ -44,14 +44,14 @@ func (o *s3Opener) open(url *url.URL) (io.ReadCloser, error) {
 	return object.Body, nil
 }
 
-// OpenS3 returns an opener that is able of loading files from S3 via the "s3"
+// Open returns an opener that is able of loading files from S3 via the "s3"
 // scheme.
 //
 // The s3 client might be set to nil, in which case a new client will be
 // created using the default credential provider chain (see
 // https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
 // for more details).
-func OpenS3(client s3iface.S3API, o *porteiro.Opener) (*porteiro.Opener, error) {
+func Open(client s3iface.S3API, o *porteiro.Opener) (*porteiro.Opener, error) {
 	opener, err := newS3Opener(client)
 	if err != nil {
 		return nil, err

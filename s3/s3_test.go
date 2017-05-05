@@ -34,7 +34,7 @@ func TestS3OpenerNilClient(t *testing.T) {
 func TestOpenS3(t *testing.T) {
 	givenData := "hello it's me"
 	client := &fakeS3{objData: []byte(givenData)}
-	opener, err := OpenS3(client, nil)
+	opener, err := Open(client, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -55,7 +55,7 @@ func TestOpenS3(t *testing.T) {
 func TestOpenS3Failure(t *testing.T) {
 	prepErr := errors.New("something went wrong")
 	client := &fakeS3{err: prepErr}
-	opener, err := OpenS3(client, nil)
+	opener, err := Open(client, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
