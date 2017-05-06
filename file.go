@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/url"
 	"os"
+	"path"
 )
 
 // OpenFiles returns an Opener that knows how to open files in the local file
@@ -17,5 +18,5 @@ func OpenFiles(o *Opener) *Opener {
 }
 
 func openFile(resource *url.URL) (io.ReadCloser, error) {
-	return os.Open(resource.Path)
+	return os.Open(path.Join(resource.Host, resource.Path))
 }

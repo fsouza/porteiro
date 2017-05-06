@@ -24,7 +24,7 @@ func TestOpenFiles(t *testing.T) {
 	}
 	for _, uri := range uris {
 		t.Run(uri, func(t *testing.T) {
-			rc, err := opener.Open("testdata/somefile.txt")
+			rc, err := opener.Open(uri)
 			if err != nil {
 				t.Fatal(err)
 			}
