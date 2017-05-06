@@ -2,10 +2,6 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Package porteiro provides a common interface with the method for opening
-// remote and local resources. It associates schemes with opening functions.
-//
-// Subpackages include implementation for some common resources.
 package porteiro
 
 import (
