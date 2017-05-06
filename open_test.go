@@ -18,8 +18,7 @@ func TestRegisterAndOpen(t *testing.T) {
 	fn2 := makeFakeFn("2", nil, &recorder)
 	fn3 := makeFakeFn("3", nil, &recorder)
 	fn4 := makeFakeFn("4", nil, &recorder)
-	var opener *Opener
-	opener = opener.Register("http", fn1).Register("ftp", fn2)
+	opener := Register("http", fn1).Register("ftp", fn2)
 	opener = opener.Register("s3", fn3).Register("ftp", fn4)
 	_, err := opener.Open("http://something-nice")
 	if err != nil {

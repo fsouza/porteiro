@@ -21,6 +21,12 @@ type Opener struct {
 	registry map[string]OpenFunc
 }
 
+// Register returns a new opener with the given scheme and function registered.
+func Register(scheme string, fn OpenFunc) *Opener {
+	var o *Opener
+	return o.Register(scheme, fn)
+}
+
 // Register registers the given function for the given scheme and returns a new
 // Opener.
 //
