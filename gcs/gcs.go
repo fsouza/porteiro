@@ -48,5 +48,5 @@ func Open(client *storage.Client, o *porteiro.Opener) (*porteiro.Opener, error) 
 	if err != nil {
 		return nil, err
 	}
-	return o.Register("gcs", opener.open), nil
+	return o.Register("gcs", opener.open).Register("gs", opener.open), nil
 }
