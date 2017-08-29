@@ -10,6 +10,5 @@ script:
   - gometalinter --disable errcheck --deadline 10m ./...
   - go test ./...
 go:
-  - 1.8.x
   - 1.9
   - tip

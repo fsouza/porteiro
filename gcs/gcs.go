@@ -7,13 +7,13 @@
 package gcs
 
 import (
+	"context"
 	"io"
 	"net/url"
 	"strings"
 
 	"cloud.google.com/go/storage"
 	"github.com/fsouza/porteiro"
-	"golang.org/x/net/context"
 )
 
 type gcsOpener struct {
