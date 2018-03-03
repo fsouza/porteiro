@@ -1,0 +1,16 @@
+
+[[constraint]]
+  name = "cloud.google.com/go"
+  version = "0.19.0"
+
+[[constraint]]
+  name = "github.com/aws/aws-sdk-go-v2"
+  version = "2.0.0-preview.2"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/hashicorp/go-cleanhttp"
+
+[prune]
+  go-tests = true
+  unused-packages = true
