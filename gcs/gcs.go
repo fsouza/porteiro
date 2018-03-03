@@ -3,7 +3,8 @@
 // license that can be found in the LICENSE file.
 
 // Package gcs provides an opener for Google Cloud Storage (GCS) resources
-// declared in the format gcs://<bucket-name>/<object-key>.
+// declared in the format gcs://<bucket-name>/<object-key>. It also supports
+// the "gs" scheme.
 package gcs
 
 import (
@@ -37,7 +38,7 @@ func (o *gcsOpener) open(url *url.URL) (io.ReadCloser, error) {
 }
 
 // Open returns an opener that is able of loading files from Google Cloud
-// Storage (GCS) via the "gcs" scheme.
+// Storage (GCS) via the "gcs"/"gs" schemes.
 //
 // The gcs client might be set to nil, in which case a new client will be
 // created using Google's application default credentials (see
