@@ -8,8 +8,8 @@ import (
 	"bytes"
 	"io/ioutil"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
 )
 
 type fakeS3 struct {
@@ -19,11 +19,27 @@ type fakeS3 struct {
 	openObjs []string
 }
 
-func (s *fakeS3) GetObject(input *s3.GetObjectInput) (*s3.GetObjectOutput, error) {
-	obj := "s3://" + aws.StringValue(input.Bucket) + "/" + aws.StringValue(input.Key)
-	s.openObjs = append(s.openObjs, obj)
-	reader := bytes.NewReader(s.objData)
-	return &s3.GetObjectOutput{
-		Body: ioutil.NopCloser(reader),
-	}, s.err
+func (s *fakeS3) GetObjectRequest(input *s3.GetObjectInput) s3.GetObjectRequest {
+	return s3.GetObjectRequest{
+		Input:   input,
+		Request: s.getAWSRequest(input),
+	}
+}
+
+func (s *fakeS3) getAWSRequest(input *s3.GetObjectInput) *aws.Request {
+	var handlers aws.HandlerList
+	handlers.PushBack(func(r *aws.Request) {
+		obj := "s3://" + aws.StringValue(input.Bucket) + "/" + aws.StringValue(input.Key)
+		s.openObjs = append(s.openObjs, obj)
+		reader := bytes.NewReader(s.objData)
+		r.Data = &s3.GetObjectOutput{
+			Body: ioutil.NopCloser(reader),
+		}
+		r.Error = s.err
+	})
+	return &aws.Request{
+		Handlers: aws.Handlers{
+			Send: handlers,
+		},
+	}
 }

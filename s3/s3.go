@@ -11,10 +11,10 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3iface"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/aws/external"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/aws/aws-sdk-go-v2/service/s3/s3iface"
 	"github.com/fsouza/porteiro"
 )
 
@@ -24,20 +24,21 @@ type s3Opener struct {
 
 func newS3Opener(client s3iface.S3API) (*s3Opener, error) {
 	if client == nil {
-		sess, err := session.NewSession()
+		cfg, err := external.LoadDefaultAWSConfig()
 		if err != nil {
 			return nil, err
 		}
-		client = s3.New(sess)
+		client = s3.New(cfg)
 	}
 	return &s3Opener{client: client}, nil
 }
 
 func (o *s3Opener) open(url *url.URL) (io.ReadCloser, error) {
-	object, err := o.client.GetObject(&s3.GetObjectInput{
+	req := o.client.GetObjectRequest(&s3.GetObjectInput{
 		Bucket: aws.String(url.Host),
 		Key:    aws.String(strings.TrimLeft(url.Path, "/")),
 	})
+	object, err := req.Send()
 	if err != nil {
 		return nil, err
 	}
