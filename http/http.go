@@ -12,7 +12,7 @@ import (
 	"net/url"
 
 	"github.com/fsouza/porteiro"
-	"github.com/hashicorp/go-cleanhttp"
+	cleanhttp "github.com/hashicorp/go-cleanhttp"
 )
 
 type httpOpener struct {

@@ -45,7 +45,7 @@ func ExampleOpenFiles_noscheme() {
 }
 
 func ExampleRegister() {
-	o := porteiro.Register("fake", func(resource *url.URL) (io.ReadCloser, error) {
+	o := porteiro.Register("fake", func(_ *url.URL) (io.ReadCloser, error) {
 		r := strings.NewReader("fake data")
 		return ioutil.NopCloser(r), nil
 	})

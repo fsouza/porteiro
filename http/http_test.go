@@ -11,7 +11,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/hashicorp/go-cleanhttp"
+	cleanhttp "github.com/hashicorp/go-cleanhttp"
 )
 
 func TestOpenHTTP(t *testing.T) {
@@ -31,8 +31,8 @@ func TestOpenHTTP(t *testing.T) {
 		t.Errorf("wrong data was read\nwant %q\ngot  %q", content, string(data))
 	}
 	r := <-reqs
-	if r.Method != "GET" {
-		t.Errorf("wrong request method sent\nwant %q\ngot  %q", "GET", r.Method)
+	if r.Method != http.MethodGet {
+		t.Errorf("wrong request method sent\nwant %q\ngot  %q", http.MethodGet, r.Method)
 	}
 	if r.URL.Path != "/some-file.txt" {
 		t.Errorf("wrong request url\nwant %q\ngot  %q", "/some-file.txt", r.URL.String())
@@ -56,7 +56,7 @@ func TestOpenHTTPNilClient(t *testing.T) {
 		t.Errorf("wrong data was read\nwant %q\ngot  %q", content, string(data))
 	}
 	r := <-reqs
-	if r.Method != "GET" {
+	if r.Method != http.MethodGet {
 		t.Errorf("wrong request method sent\nwant %q\ngot  %q", "GET", r.Method)
 	}
 	if r.URL.Path != "/some-file.txt" {

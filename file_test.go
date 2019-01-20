@@ -11,6 +11,7 @@ import (
 )
 
 func TestOpenFiles(t *testing.T) {
+	t.Parallel()
 	opener := OpenFiles(nil)
 	abs, err := filepath.Abs("testdata/somefile.txt")
 	if err != nil {
@@ -23,7 +24,9 @@ func TestOpenFiles(t *testing.T) {
 		"file://" + abs,
 	}
 	for _, uri := range uris {
+		uri := uri
 		t.Run(uri, func(t *testing.T) {
+			t.Parallel()
 			rc, err := opener.Open(uri)
 			if err != nil {
 				t.Fatal(err)
