@@ -11,6 +11,7 @@ import (
 )
 
 func TestS3Opener(t *testing.T) {
+	t.Parallel()
 	client := &fakeS3{}
 	o, err := newS3Opener(client)
 	if err != nil {
@@ -22,6 +23,7 @@ func TestS3Opener(t *testing.T) {
 }
 
 func TestS3OpenerNilClient(t *testing.T) {
+	t.Parallel()
 	o, err := newS3Opener(nil)
 	if err != nil {
 		t.Fatal(err)
@@ -32,6 +34,7 @@ func TestS3OpenerNilClient(t *testing.T) {
 }
 
 func TestOpenS3(t *testing.T) {
+	t.Parallel()
 	givenData := "hello it's me"
 	client := &fakeS3{objData: []byte(givenData)}
 	opener, err := Open(client, nil)
@@ -53,6 +56,7 @@ func TestOpenS3(t *testing.T) {
 }
 
 func TestOpenS3Failure(t *testing.T) {
+	t.Parallel()
 	prepErr := errors.New("something went wrong")
 	client := &fakeS3{err: prepErr}
 	opener, err := Open(client, nil)

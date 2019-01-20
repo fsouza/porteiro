@@ -15,6 +15,7 @@ import (
 )
 
 func TestOpenHTTP(t *testing.T) {
+	t.Parallel()
 	content := "hello, it's me"
 	server, reqs := startServer([]byte(content), false)
 	defer server.Close()
@@ -40,6 +41,7 @@ func TestOpenHTTP(t *testing.T) {
 }
 
 func TestOpenHTTPNilClient(t *testing.T) {
+	t.Parallel()
 	content := "hello, it's me"
 	server, reqs := startServer([]byte(content), false)
 	defer server.Close()
@@ -65,6 +67,7 @@ func TestOpenHTTPNilClient(t *testing.T) {
 }
 
 func TestOpenHTTPSecure(t *testing.T) {
+	t.Parallel()
 	content := "hello, it's me, and I'm secure!"
 	server, reqs := startServer([]byte(content), true)
 	defer server.Close()
@@ -92,6 +95,7 @@ func TestOpenHTTPSecure(t *testing.T) {
 }
 
 func TestOpenHTTPFailure(t *testing.T) {
+	t.Parallel()
 	opener := Open(nil, nil)
 	rc, err := opener.Open("http://192.0.2.14:139193/some-file.txt")
 	if err == nil {

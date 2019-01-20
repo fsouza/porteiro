@@ -13,6 +13,7 @@ import (
 )
 
 func TestRegisterAndOpen(t *testing.T) {
+	t.Parallel()
 	var recorder callRecorder
 	fn1 := makeFakeFn("1", nil, &recorder)
 	fn2 := makeFakeFn("2", nil, &recorder)
@@ -43,6 +44,7 @@ func TestRegisterAndOpen(t *testing.T) {
 }
 
 func TestMerge(t *testing.T) {
+	t.Parallel()
 	var recorder callRecorder
 	fn1 := makeFakeFn("1", nil, &recorder)
 	fn2 := makeFakeFn("2", nil, &recorder)
@@ -75,6 +77,7 @@ func TestMerge(t *testing.T) {
 }
 
 func TestOpenUnkownScheme(t *testing.T) {
+	t.Parallel()
 	var opener Opener
 	rc, err := opener.Open("http://something-funny")
 	if err == nil {
@@ -90,6 +93,7 @@ func TestOpenUnkownScheme(t *testing.T) {
 }
 
 func TestOpenInvalidResource(t *testing.T) {
+	t.Parallel()
 	var opener Opener
 	rc, err := opener.Open("://something-funny")
 	if err == nil {
@@ -101,6 +105,7 @@ func TestOpenInvalidResource(t *testing.T) {
 }
 
 func TestFailureOnOpen(t *testing.T) {
+	t.Parallel()
 	prepErr := errors.New("something went wrong")
 	fn := makeFakeFn("1", prepErr, &callRecorder{})
 	var opener *Opener
