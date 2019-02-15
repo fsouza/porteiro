@@ -13,13 +13,19 @@ import (
 
 func TestOpen(t *testing.T) {
 	const content = "some content"
-	server := fakestorage.NewServer([]fakestorage.Object{
-		{
-			BucketName: "some-bucket",
-			Name:       "files/file.txt",
-			Content:    []byte(content),
+	server, err := fakestorage.NewServerWithOptions(fakestorage.Options{
+		InitialObjects: []fakestorage.Object{
+			{
+				BucketName: "some-bucket",
+				Name:       "files/file.txt",
+				Content:    []byte(content),
+			},
 		},
+		NoListener: true,
 	})
+	if err != nil {
+		t.Fatal(err)
+	}
 	defer server.Stop()
 	opener, err := Open(server.Client(), nil)
 	if err != nil {
