@@ -6,7 +6,7 @@ cache:
     - $GOPATH/bin
 install:
   - go get github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-  - then go mod download
+  - go mod download
 script:
   - golangci-lint run --enable-all -D errcheck -D lll -D dupl -D gochecknoglobals -D gosec --deadline 5m ./...
   - go test -race ./...
