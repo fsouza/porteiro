@@ -4,29 +4,14 @@ cache:
   directories:
     - $GOPATH/pkg
     - $GOPATH/bin
-    - $GOPATH/src/github.com/golang
-    - $GOPATH/src/github.com/golangci
 install:
-  - if [[ $DEP_TOOL == "dep" ]]; then go get github.com/golangci/golangci-lint/cmd/golangci-lint github.com/golang/dep/cmd/dep; fi
-  - if [[ $DEP_TOOL == "dep" ]]; then dep ensure -v; fi
-  - if [[ $DEP_TOOL == "mod" ]]; then go get github.com/golangci/golangci-lint/cmd/golangci-lint@latest; fi
-  - if [[ $DEP_TOOL == "mod" ]]; then go mod download; fi
+  - go get github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+  - then go mod download
 script:
   - golangci-lint run --enable-all -D errcheck -D lll -D dupl -D gochecknoglobals -D gosec --deadline 5m ./...
   - go test -race ./...
 go:
-  - 1.10.x
-  - 1.11.x
-  - 1.12rc1
+  - 1.x
   - tip
-env:
-  matrix:
-    - DEP_TOOL=dep GO111MODULE=off
-    - DEP_TOOL=mod GO111MODULE=on
 matrix:
   fast_finish: true
-  exclude:
-    - go: 1.10.x
-      env: DEP_TOOL=mod GO111MODULE=on
-    - go: 1.10.x
-      env: DEP_TOOL=mod GO111MODULE=on
