@@ -6,3 +6,5 @@ require (
 	github.com/fsouza/fake-gcs-server v1.7.0
 	github.com/hashicorp/go-cleanhttp v0.5.1
 )
+
+go 1.13
