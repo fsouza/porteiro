@@ -13,7 +13,10 @@ script:
   - go test -race ./...
 go:
   - 1.x
+  - tip
 env:
   - GO111MODULE=on
 matrix:
   fast_finish: true
+  allow_failures:
+    - go: tip
