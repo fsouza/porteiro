@@ -7,6 +7,7 @@
 package s3
 
 import (
+	"context"
 	"io"
 	"net/url"
 	"strings"
@@ -38,7 +39,7 @@ func (o *s3Opener) open(url *url.URL) (io.ReadCloser, error) {
 		Bucket: aws.String(url.Host),
 		Key:    aws.String(strings.TrimLeft(url.Path, "/")),
 	})
-	object, err := req.Send()
+	object, err := req.Send(context.Background())
 	if err != nil {
 		return nil, err
 	}

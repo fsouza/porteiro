@@ -7,6 +7,7 @@ package s3
 import (
 	"bytes"
 	"io/ioutil"
+	"net/http"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
@@ -37,7 +38,9 @@ func (s *fakeS3) getAWSRequest(input *s3.GetObjectInput) *aws.Request {
 		}
 		r.Error = s.err
 	})
+	httpRequest, _ := http.NewRequest(http.MethodGet, "/", nil)
 	return &aws.Request{
+		HTTPRequest: httpRequest,
 		Handlers: aws.Handlers{
 			Send: handlers,
 		},
