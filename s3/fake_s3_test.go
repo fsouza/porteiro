@@ -14,7 +14,7 @@ import (
 )
 
 type fakeS3 struct {
-	s3.S3
+	s3.Client
 	err      error
 	objData  []byte
 	openObjs []string
