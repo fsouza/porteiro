@@ -20,10 +20,10 @@ import (
 )
 
 type s3Opener struct {
-	client s3iface.S3API
+	client s3iface.ClientAPI
 }
 
-func newS3Opener(client s3iface.S3API) (*s3Opener, error) {
+func newS3Opener(client s3iface.ClientAPI) (*s3Opener, error) {
 	if client == nil {
 		cfg, err := external.LoadDefaultAWSConfig()
 		if err != nil {
@@ -53,7 +53,7 @@ func (o *s3Opener) open(url *url.URL) (io.ReadCloser, error) {
 // created using the default credential provider chain (see
 // https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
 // for more details).
-func Open(client s3iface.S3API, o *porteiro.Opener) (*porteiro.Opener, error) {
+func Open(client s3iface.ClientAPI, o *porteiro.Opener) (*porteiro.Opener, error) {
 	opener, err := newS3Opener(client)
 	if err != nil {
 		return nil, err
