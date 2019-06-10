@@ -72,6 +72,7 @@ func TestOpenHTTPSecure(t *testing.T) {
 	server, reqs := startServer([]byte(content), true)
 	defer server.Close()
 	transport := cleanhttp.DefaultTransport()
+	// #nosec
 	transport.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	opener := Open(&http.Client{Transport: transport}, nil)
 	rc, err := opener.Open(server.URL + "/some-secure-file.txt")
