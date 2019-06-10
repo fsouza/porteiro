@@ -27,7 +27,7 @@ func newHTTPOpener(client *http.Client) *httpOpener {
 }
 
 func (o *httpOpener) open(url *url.URL) (io.ReadCloser, error) {
-	resp, err := o.client.Get(url.String())
+	resp, err := o.client.Get(url.String()) //nolint:bodyclose
 	if err != nil {
 		return nil, err
 	}
