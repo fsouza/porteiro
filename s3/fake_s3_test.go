@@ -41,6 +41,7 @@ func (s *fakeS3) getAWSRequest(input *s3.GetObjectInput) *aws.Request {
 	httpRequest, _ := http.NewRequest(http.MethodGet, "/", nil)
 	return &aws.Request{
 		HTTPRequest: httpRequest,
+		Retryer:     aws.NewDefaultRetryer(),
 		Handlers: aws.Handlers{
 			Send: handlers,
 		},
