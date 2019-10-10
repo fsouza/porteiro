@@ -6,3 +6,4 @@ linters:
   disable:
     - errcheck
     - lll
+    - wsl
