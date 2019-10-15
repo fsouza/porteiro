@@ -34,8 +34,8 @@ func (o *httpOpener) open(url *url.URL) (io.ReadCloser, error) {
 	return resp.Body, nil
 }
 
-// Open returns an opener that is able of loading files from S3 via the "s3"
-// scheme.
+// Open returns an opener that is able of loading files from HTTP servers via
+// the "http" and "https" schemes.
 //
 // The http client might be set to nil, in which case a new client will be
 // created.
