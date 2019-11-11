@@ -42,6 +42,8 @@ github.com/fsouza/fake-gcs-server v1.13.0 h1:WeerKRi6wHWieRnVA3PtKPpJdfexZ9OVoKO
 github.com/fsouza/fake-gcs-server v1.13.0/go.mod h1:SrdNhaE2fGU3lExlIGlFXuHhCPCNw6iL3zPpl5mgZr8=
 github.com/fsouza/fake-gcs-server v1.13.1 h1:UZtKImD7ZTUtJwiON52aB51O/VzYvTv9ozgH9m20PZ0=
 github.com/fsouza/fake-gcs-server v1.13.1/go.mod h1:GGM0tOebTeDkb08J1RwTIO1snJQx1O8oGlc///0LOXk=
+github.com/fsouza/fake-gcs-server v1.14.1 h1:BVc+v7GMUuk72mdpFuKM5hsGLQyBRbwuJQHGYh4tMpI=
+github.com/fsouza/fake-gcs-server v1.14.1/go.mod h1:EpHTMqz60wUEddfYQh/gOddpM+26mEz4ScPsTuBsN4U=
 github.com/go-gl/glfw v0.0.0-20190409004039-e6da0acd62b1/go.mod h1:vR7hzQXu2zJy9AVAgeJqvqgH9Q5CA+iKCZ2gyEVpxRU=
 github.com/go-sql-driver/mysql v1.4.0/go.mod h1:zAC/RDZ24gD3HViQzih4MyKcchzm+sOG5ZlKdlhCg5w=
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b h1:VKtxabqXZkF25pY9ekfRL6a582T4P37/31XEstQ5p58=
