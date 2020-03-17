@@ -10,6 +10,7 @@ import (
 	"net/http"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/aws/retry"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 )
 
@@ -41,7 +42,7 @@ func (s *fakeS3) getAWSRequest(input *s3.GetObjectInput) *aws.Request {
 	httpRequest, _ := http.NewRequest(http.MethodGet, "/", nil)
 	return &aws.Request{
 		HTTPRequest: httpRequest,
-		Retryer:     aws.NewDefaultRetryer(),
+		Retryer:     retry.NewStandard(),
 		Handlers: aws.Handlers{
 			Send: handlers,
 		},
