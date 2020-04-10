@@ -53,6 +53,8 @@ github.com/fsouza/fake-gcs-server v1.18.0 h1:JUjuyRycXIS+Zas0UP9pxRv8nLbqgug9wqt
 github.com/fsouza/fake-gcs-server v1.18.0/go.mod h1:7mfLeKJCiGyWk+1D1vYGAUXaIZYGfPzoFLri6WUpF+U=
 github.com/fsouza/fake-gcs-server v1.18.1 h1:7fA13aFlR3HWeUTqhrEebl+AV1o9zRBhrur/snOlOCA=
 github.com/fsouza/fake-gcs-server v1.18.1/go.mod h1:iVCT/Bmn6OK+uEnnkJmqxvoT5ei3cL+XCZbuvkZva+Y=
+github.com/fsouza/fake-gcs-server v1.18.2 h1:8Pk9TYCl41f/6EOAL+L4x1p/B7f47BDN4uzD1IOlIZg=
+github.com/fsouza/fake-gcs-server v1.18.2/go.mod h1:LmPc8motXpws6x0+2Xzgj1pmkppiSpy61DrRXV137j4=
 github.com/go-gl/glfw v0.0.0-20190409004039-e6da0acd62b1/go.mod h1:vR7hzQXu2zJy9AVAgeJqvqgH9Q5CA+iKCZ2gyEVpxRU=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20191125211704-12ad95a8df72/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20200222043503-6f7a984d4dc4/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
@@ -316,6 +318,8 @@ google.golang.org/api v0.18.0 h1:TgDr+1inK2XVUKZx3BYAqQg/GwucGdBkzZjWaTg/I+A=
 google.golang.org/api v0.18.0/go.mod h1:BwFmGc8tA3vsd7r/7kR8DY7iEEGSU04BFxCo5jP/sfE=
 google.golang.org/api v0.20.0 h1:jz2KixHX7EcCPiQrySzPdnYT7DbINAypCqKZ1Z7GM40=
 google.golang.org/api v0.20.0/go.mod h1:BwFmGc8tA3vsd7r/7kR8DY7iEEGSU04BFxCo5jP/sfE=
+google.golang.org/api v0.21.0 h1:zS+Q/CJJnVlXpXQVIz+lH0ZT2lBuT2ac7XD8Y/3w6hY=
+google.golang.org/api v0.21.0/go.mod h1:BwFmGc8tA3vsd7r/7kR8DY7iEEGSU04BFxCo5jP/sfE=
 google.golang.org/appengine v1.1.0/go.mod h1:EbEs0AVv82hx2wNQdGPgUI5lhzA/G0D9YwlJXL52JkM=
 google.golang.org/appengine v1.4.0 h1:/wp5JvzpHIxhs/dumFmF7BXTf3Z+dd4uXta4kVyO508=
 google.golang.org/appengine v1.4.0/go.mod h1:xpcJRLb0r/rnEns0DIKYYv+WjYCduHsrkT7/EB5XEv4=
