@@ -57,6 +57,8 @@ github.com/fsouza/fake-gcs-server v1.18.2 h1:8Pk9TYCl41f/6EOAL+L4x1p/B7f47BDN4uz
 github.com/fsouza/fake-gcs-server v1.18.2/go.mod h1:LmPc8motXpws6x0+2Xzgj1pmkppiSpy61DrRXV137j4=
 github.com/fsouza/fake-gcs-server v1.18.3 h1:8UdXZyGcnktFejtqrSqKVrGwCYKF3uhXhIOfj8lERIo=
 github.com/fsouza/fake-gcs-server v1.18.3/go.mod h1:LmPc8motXpws6x0+2Xzgj1pmkppiSpy61DrRXV137j4=
+github.com/fsouza/fake-gcs-server v1.18.4 h1:TpLea9TKfTdzISyKtrHpx2U0/w9fmmQan8Mpqt45m5M=
+github.com/fsouza/fake-gcs-server v1.18.4/go.mod h1:LmPc8motXpws6x0+2Xzgj1pmkppiSpy61DrRXV137j4=
 github.com/go-gl/glfw v0.0.0-20190409004039-e6da0acd62b1/go.mod h1:vR7hzQXu2zJy9AVAgeJqvqgH9Q5CA+iKCZ2gyEVpxRU=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20191125211704-12ad95a8df72/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20200222043503-6f7a984d4dc4/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
