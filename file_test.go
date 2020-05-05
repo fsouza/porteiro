@@ -12,15 +12,14 @@ import (
 
 func TestOpenFiles(t *testing.T) {
 	t.Parallel()
-	testfile := filepath.Join("testdata", "somefile.txt")
 	opener := OpenFiles(nil)
-	abs, err := filepath.Abs(testfile)
+	abs, err := filepath.Abs("testdata/somefile.txt")
 	if err != nil {
 		t.Fatal(err)
 	}
 	uris := []string{
-		testfile,
-		"file://" + testfile,
+		"testdata/somefile.txt",
+		"file://testdata/somefile.txt",
 		abs,
 		"file://" + abs,
 	}
