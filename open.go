@@ -63,7 +63,7 @@ func (o *Opener) Merge(other *Opener) *Opener {
 func (o *Opener) Open(uri string) (io.ReadCloser, error) {
 	resource, err := url.Parse(uri)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to open %q: make sure it's a valid URI. Parsing error: %w", uri, err)
 	}
 	fn, ok := o.registry[resource.Scheme]
 	if !ok {
