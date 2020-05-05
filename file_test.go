@@ -7,11 +7,16 @@ package porteiro
 import (
 	"io/ioutil"
 	"path/filepath"
+	"runtime"
 	"testing"
 )
 
 func TestOpenFiles(t *testing.T) {
 	t.Parallel()
+	if runtime.GOOS == "windows" {
+		t.Skip("skipping test on Windows")
+		t.SkipNow()
+	}
 	opener := OpenFiles(nil)
 	abs, err := filepath.Abs("testdata/somefile.txt")
 	if err != nil {
