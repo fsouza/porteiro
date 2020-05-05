@@ -67,7 +67,18 @@ func (o *Opener) Open(uri string) (io.ReadCloser, error) {
 	}
 	fn, ok := o.registry[resource.Scheme]
 	if !ok {
-		return nil, fmt.Errorf("can't open %q: unknown scheme %q", uri, resource.Scheme)
+		return nil, &UnknownSchemeError{Scheme: resource.Scheme, URI: uri}
 	}
 	return fn(resource)
+}
+
+// UnknownSchemeError represents an error in opening the given URI becaue the
+// provided scheme is unknown to the opener.
+type UnknownSchemeError struct {
+	URI    string
+	Scheme string
+}
+
+func (err *UnknownSchemeError) Error() string {
+	return fmt.Sprintf("can't open %q: unknown scheme %q", err.URI, err.Scheme)
 }

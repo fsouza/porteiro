@@ -106,12 +106,13 @@ func TestOpenInvalidResource(t *testing.T) {
 
 func TestFailureOnOpen(t *testing.T) {
 	t.Parallel()
+	//nolint:goerr113
 	prepErr := errors.New("something went wrong")
 	fn := makeFakeFn("1", prepErr, &callRecorder{})
 	var opener *Opener
 	opener = opener.Register("http", fn)
 	rc, err := opener.Open("http://whatever")
-	if err != prepErr {
+	if !errors.Is(err, prepErr) {
 		t.Errorf("wrong error returned\nwant %#v\ngot  %#v", prepErr, err)
 	}
 	if rc != nil {
