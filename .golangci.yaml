@@ -6,5 +6,6 @@ linters:
   disable:
     - errcheck
     - lll
+    - nlreturn
     - testpackage
     - wsl
