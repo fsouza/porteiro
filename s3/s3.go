@@ -13,37 +13,39 @@ import (
 	"strings"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/aws/aws-sdk-go-v2/aws/external"
+	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
-	"github.com/aws/aws-sdk-go-v2/service/s3/s3iface"
 	"github.com/fsouza/porteiro"
 )
 
 type s3Opener struct {
-	client s3iface.ClientAPI
+	client ClientAPI
 }
 
-func newS3Opener(client s3iface.ClientAPI) (*s3Opener, error) {
+type ClientAPI interface {
+	GetObject(context.Context, *s3.GetObjectInput, ...func(*s3.Options)) (*s3.GetObjectOutput, error)
+}
+
+func newS3Opener(client ClientAPI) (*s3Opener, error) {
 	if client == nil {
-		cfg, err := external.LoadDefaultAWSConfig()
+		cfg, err := config.LoadDefaultConfig()
 		if err != nil {
 			return nil, err
 		}
-		client = s3.New(cfg)
+		client = s3.NewFromConfig(cfg)
 	}
 	return &s3Opener{client: client}, nil
 }
 
 func (o *s3Opener) open(url *url.URL) (io.ReadCloser, error) {
-	req := o.client.GetObjectRequest(&s3.GetObjectInput{
+	resp, err := o.client.GetObject(context.Background(), &s3.GetObjectInput{
 		Bucket: aws.String(url.Host),
 		Key:    aws.String(strings.TrimLeft(url.Path, "/")),
 	})
-	object, err := req.Send(context.Background())
 	if err != nil {
 		return nil, err
 	}
-	return object.Body, nil
+	return resp.Body, nil
 }
 
 // Open returns an opener that is able of loading files from S3 via the "s3"
@@ -53,7 +55,7 @@ func (o *s3Opener) open(url *url.URL) (io.ReadCloser, error) {
 // created using the default credential provider chain (see
 // https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
 // for more details).
-func Open(client s3iface.ClientAPI, o *porteiro.Opener) (*porteiro.Opener, error) {
+func Open(client ClientAPI, o *porteiro.Opener) (*porteiro.Opener, error) {
 	opener, err := newS3Opener(client)
 	if err != nil {
 		return nil, err
