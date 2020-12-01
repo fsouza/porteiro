@@ -8,6 +8,7 @@ linters:
     - exhaustivestruct
     - lll
     - nlreturn
+    - paralleltest
     - testpackage
     - wrapcheck
     - wsl
