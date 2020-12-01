@@ -12,6 +12,7 @@ import (
 )
 
 func TestOpen(t *testing.T) {
+	t.Parallel()
 	const content = "some content"
 	server, err := fakestorage.NewServerWithOptions(fakestorage.Options{
 		InitialObjects: []fakestorage.Object{
