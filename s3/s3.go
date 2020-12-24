@@ -28,7 +28,7 @@ type ClientAPI interface {
 
 func newS3Opener(client ClientAPI) (*s3Opener, error) {
 	if client == nil {
-		cfg, err := config.LoadDefaultConfig()
+		cfg, err := config.LoadDefaultConfig(context.Background())
 		if err != nil {
 			return nil, err
 		}
