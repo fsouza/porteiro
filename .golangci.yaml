@@ -2,13 +2,7 @@ run:
   deadline: 5m
 
 linters:
-  enable-all: true
-  disable:
-    - errcheck
-    - exhaustivestruct
-    - lll
-    - nlreturn
-    - paralleltest
-    - testpackage
-    - wrapcheck
-    - wsl
+  disable-all: true
+  enable:
+    - gofmt
+    - goimports
