@@ -106,7 +106,6 @@ func TestOpenInvalidResource(t *testing.T) {
 
 func TestFailureOnOpen(t *testing.T) {
 	t.Parallel()
-	//nolint:goerr113
 	prepErr := errors.New("something went wrong")
 	fn := makeFakeFn("1", prepErr, &callRecorder{})
 	var opener *Opener

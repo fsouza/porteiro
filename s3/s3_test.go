@@ -57,7 +57,6 @@ func TestOpenS3(t *testing.T) {
 
 func TestOpenS3Failure(t *testing.T) {
 	t.Parallel()
-	//nolint:goerr113
 	prepErr := errors.New("something went wrong")
 	client := &fakeS3{err: prepErr}
 	opener, err := Open(client, nil)
