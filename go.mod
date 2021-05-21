@@ -3,8 +3,7 @@ module github.com/fsouza/porteiro
 require (
 	cloud.google.com/go/storage v1.15.0
 	github.com/aws/aws-sdk-go-v2 v1.6.0
-	github.com/aws/aws-sdk-go-v2/config v1.2.0
-	github.com/aws/aws-sdk-go-v2/internal/ini v1.0.0 // indirect
+	github.com/aws/aws-sdk-go-v2/config v1.3.0
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.8.0
 	github.com/fsouza/fake-gcs-server v1.25.0
 	github.com/hashicorp/go-cleanhttp v0.5.2
