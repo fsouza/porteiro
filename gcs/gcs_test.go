@@ -17,9 +17,11 @@ func TestOpen(t *testing.T) {
 	server, err := fakestorage.NewServerWithOptions(fakestorage.Options{
 		InitialObjects: []fakestorage.Object{
 			{
-				BucketName: "some-bucket",
-				Name:       "files/file.txt",
-				Content:    []byte(content),
+				ObjectAttrs: fakestorage.ObjectAttrs{
+					BucketName: "some-bucket",
+					Name:       "files/file.txt",
+				},
+				Content: []byte(content),
 			},
 		},
 		NoListener: true,
